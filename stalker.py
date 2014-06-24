@@ -1,6 +1,6 @@
 #!/usr/bin/env python                                               #
 #####################################################################
-#- erm1s.n1nja@gmail.com | github.com/erm1s | erm1s.wordpress.com - #
+#- opt1@eigrp.co #
 #####################################################################
 # stalker.py
 
