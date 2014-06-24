@@ -1,0 +1,26 @@
+stalker.py Version 2.1
+- by erm1s.n1nja@gmail.com | www.erm1s.com | github.com/erm1s
+
+
+What it does:
+ - connects to eztv.it and watches for the latest episode of your favorite show to pop up on the main page
+ - connects to eztv's RSS, runs a search and finds a list of episodes from the list of tvshows you watch
+ - it then stores the list of links, and checks them against the list of episodes you already have
+ - connects to the pirate bay, runs a search, flips the page to view the highest seeders at the top, copies all of the links and stores them, runs a search against your tvshow list
+- downloads any episode that isn't a duplicate of something in your list
+ - updates the list 
+ - opens transmission and downloads (make sure dialog options are disabled in transmission)
+    - from tvshows list
+     - this file can be updated during stalker runtime
+- sleeps for 20 minutes before restarting the loop 
+
+Installation:
+Edit your tvshows file!
+I am giving you my original tvshows file, you should be able to edit it accordingly just by looking at it. you can append shows into tvshows during run time, it will identify them
+and it will start stalking them on it's next loop.
+
+Running it:
+./python stalker.py &
+
+That should put it in the background
+Thanks for downloading stalker!

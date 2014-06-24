@@ -1,0 +1,125 @@
+June 1, 2013
+- added in magnet parsing
+- automated transmission download
+
+June 2, 2013
+- Change code to use optparse
+- Added optional Season Episode flag
+* Added 720HD flag, if you prefer HD use this tag
+- Cleaned up the code a bit
+
+June 3, 2013
+* removed 720HD flag for now
+
+* change the structure of the code to allow an updated tvshow list
+
+* rewrote the stalker_daemon and stalker_stalking function
+ - made it parse the tvshows list to search for wanted
+
+* made an stalker.log and error.log file
+ - saves errors with timestamp
+ - catches all exceptions during run time
+ - writes what episodes are downloaded inside the stalker.log
+ - fixed stalker.log to append information 'a+'
+
+*** writing parseKing() - incomplete kept out of release
+ - for now it opens a tvshow file in the format: show.name:s01:s02:s03e08
+ - parses the information to make sure it does not download
+ - previously downloaded files.
+ - will-resave and iterate episode numbers when downloaded
+ - to keep the tvshow list iteration automated
+
+
+* wrote tvguide class
+ - moved the log files and data there
+ - passing tv class into stalker_stalking
+ - will use it to update logs
+ - block unwanted episode/season downloads
+ - moved a few functions inside tvguide class, helps with interworking data
+ - kept stalker_stalking() outside
+ - fixed error logging
+
+* write stalkerlog function in tvguide()
+ - store name of file downloaded
+ - store magnet link
+
+* wrote shouldi to check for existing magnet downloads
+ - this is how we check if a file has been downloaded so far.
+ - want to change this in the future with a different filename
+ - system in tvshows
+
+June 4, 2013
+ - when the main loop in stalker_main() returns from a thread
+ - it closes the log file then sleeps
+ - then reopens the log file 20 min later again
+- this assists addshow.py to add tv shows to the file to avoid bugs
+
+* changed readytowatch to use the tvshow variable passed in
+ - this avoids a bug where another thread could change the value
+ - from the main loop
+
+* rewriting parseKing()
+ - takes the tv show entry in the full format
+ - controls most of the program
+
+* wrote shouldi()
+ - checks if file has been downloaded before (from magnet.log)
+
+* wrote download()
+ - just executes the download sequence
+
+* wrote magcheck()
+ - parses the tvshows file for existing download (including episodes)
+
+* fixed guidesetup()
+ - found out .strip goes before .split and it can concat both string commands
+ - added a parse to skip # commented out entries in the file
+
+* moved some code around
+- mainly from the old magnetmagic() was turned into download()
+ - moved the string code into stalker_stalking directly
+  - it now passes on a finished mag link as return
+  - back to parseKing()
+  - which sets off on it's epic quest to hunt log files for exisiting downloads.
+  - if they don't exist, and are not blocked it will proceed to download.
+
+* writing updatetvshow()
+ - open tvshows file
+ - index the file vs tvshows which should contain the same output
+ - find a way to 
+ - HAVE to find a way to increment an episode that has been downloaded
+
+June 6, 2013
+* forgot what i wrote, it was late, was hungover.
+
+June 7, 2013
+* Wrote stalker_creeping
+ -ability to parse rss search for ezrss.it
+ - will find torrent links, and return the torrent link to parseKing
+
+* wrote getepisode()
+ - regex search to find the episode inside of a link
+ - returns episode
+
+* wrote updatetvshow()
+ - opens tvshows, parses lines, rewrites any line containing tvshow name
+ - and appends the new episode to it
+
+* re-wrote most of the program from scratch, it was too much work to keep track of changelogs.
+
+June 09, 2013
+* deleted updatetvshow(), changed stalker_creeping
+* updated a bunch of functions
+* changed the structure of all of the code, the way it runs, and how it is organized
+ - this was important to end up with lists coming out of the main process
+ - now they can be manipulated.
+
+* fixed the tv.downloads list, it now parses data properly, getting a giant list of links
+* fixed writing output to a new tvshows file
+
+* skips 720p episode for now (will incorporate this in the future
+
+* fixed the append and save the list of shows that are being downloaded
+* fixed the downloading to not download duplicates
+* fixed the TPB search function - currently takes links from the first page with the most seeders list "0/7/0" page two would be "1/7/0" in the url. FYI future note.
+
